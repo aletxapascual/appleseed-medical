@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config:*)",
+      "Bash(ls -la \".git\\\\worktrees\"\" 2>/dev/null || echo \"No worktrees directory \")",
+      "Bash(if [ -d \".git/worktrees\" ])",
+      "Bash(then ls -la \".git/worktrees/\")",
+      "Bash(else echo \"No worktrees directory\")",
+      "Bash(fi)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm --yes)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 10 npm run dev:*)"
+    ]
+  }
+}
