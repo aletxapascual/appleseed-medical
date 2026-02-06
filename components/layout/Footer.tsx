@@ -8,9 +8,6 @@ import { FadeUp, FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/m
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/why-us", label: "Why Us" },
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/platform", label: "Platform" },
   { href: "/products", label: "Products" },
   { href: "/contact", label: "Contact" },
 ]

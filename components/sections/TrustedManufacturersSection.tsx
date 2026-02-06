@@ -5,9 +5,9 @@ import { Building2, CheckCircle2 } from "lucide-react"
 import { FadeUp, SlideInRight, StaggerContainer, StaggerItem } from "@/components/ui/motion"
 
 const manufacturers = [
-  { name: "BioTissue Technologies", specialty: "Amniotic Products" },
+  { name: "Bio Tissue Technologies", specialty: "Amniotic Products" },
   { name: "Regenerative Sciences", specialty: "Tissue Matrix" },
-  { name: "MiMedx Group", specialty: "Wound Care" },
+  { name: "My Medicics Group", specialty: "Advanced Wound Care" },
   { name: "Amnio Technology", specialty: "Dual Layer" },
 ]
 
@@ -32,12 +32,12 @@ export function TrustedManufacturersSection() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Trusted Manufacturers
+                Access to Every Manufacturer of Advanced Wound Care Products
               </h2>
             </FadeUp>
             <FadeUp delay={0.2}>
               <p className="text-muted-foreground text-lg mb-8">
-                We partner with leading manufacturers across amniotic, collagen, keratin, and protein-based solutions to bring you the best in wound care.
+                Clinical-grade, evidence-based product selection from premier manufacturers specializing in advanced wound care technologies.
               </p>
             </FadeUp>
 

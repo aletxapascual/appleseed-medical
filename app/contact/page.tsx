@@ -4,7 +4,7 @@ import { Clock, Phone, Mail, MapPin, MessageSquare, Headphones, Zap } from "luci
 
 export const metadata: Metadata = {
   title: "Contact Us | Apple Seed Medical",
-  description: "Skip the sales pitch. Reach our team directly for access questions, orders, or platform support. Response within 4 hours guaranteed.",
+  description: "Skip the sales pitch. Reach our team directly for access, questions, orders, or support. Response within four hours guaranteed.",
 }
 
 const contactMethods = [
@@ -80,8 +80,8 @@ export default function ContactPage() {
               </h1>
 
               <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 leading-relaxed max-w-lg">
-                Skip the sales pitch. Reach our team directly for access questions,
-                orders, or platform support. We're here to help.
+                Skip the sales pitch. Reach our team directly for access, questions,
+                orders, or support. Response within four hours guaranteed.
               </p>
 
               {/* Contact Methods - Horizontal */}
@@ -130,32 +130,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Trust Indicators */}
-      <section className="bg-secondary border-t border-border">
-        <div className="container mx-auto py-12">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">500+</div>
-              <div className="text-sm text-muted-foreground">Healthcare Providers</div>
-            </div>
-            <div className="w-px h-10 bg-border hidden md:block" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">4 hrs</div>
-              <div className="text-sm text-muted-foreground">Avg Response Time</div>
-            </div>
-            <div className="w-px h-10 bg-border hidden md:block" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">98%</div>
-              <div className="text-sm text-muted-foreground">First-Contact Resolution</div>
-            </div>
-            <div className="w-px h-10 bg-border hidden md:block" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">4.9/5</div>
-              <div className="text-sm text-muted-foreground">Support Rating</div>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

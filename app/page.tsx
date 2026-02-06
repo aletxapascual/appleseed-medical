@@ -1,7 +1,8 @@
 import { HeroSection } from "@/components/sections/HeroSection"
 import { SolutionsSection } from "@/components/sections/SolutionsSection"
 import { TrustedManufacturersSection } from "@/components/sections/TrustedManufacturersSection"
-import { AIPlatformSection } from "@/components/sections/AIPlatformSection"
+import { FourPillarsSection } from "@/components/sections/FourPillarsSection"
+import { ComplianceSection } from "@/components/sections/ComplianceSection"
 
 export default function HomePage() {
   return (
@@ -9,7 +10,8 @@ export default function HomePage() {
       <HeroSection />
       <SolutionsSection />
       <TrustedManufacturersSection />
-      <AIPlatformSection />
+      <FourPillarsSection />
+      <ComplianceSection />
     </>
   )
 }
