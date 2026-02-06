@@ -65,7 +65,7 @@ export function AIPlatformSection() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 md:mb-8 leading-[1.1] tracking-tight">
-                Apple Seed Intelligence Platform
+                Appleseed Intelligence Platform
               </h2>
             </FadeUp>
             <FadeUp delay={0.2}>

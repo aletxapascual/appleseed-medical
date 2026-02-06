@@ -44,13 +44,13 @@ export function Navbar() {
               </p>
               <div className="flex items-center gap-6">
                 <a
-                  href="tel:+18552733633"
+                  href="tel:+18582995458"
                   className="flex items-center gap-2 text-white/90 hover:text-white transition-colors font-medium"
                 >
                   <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                     <Phone className="h-3 w-3" />
                   </div>
-                  (855) 273-3633
+                  (858) 299-5458
                 </a>
               </div>
             </div>
@@ -71,7 +71,7 @@ export function Navbar() {
             <Link href="/" className="flex items-center relative z-10">
               <Image
                 src="/logos/appleseed_Horizontal.svg"
-                alt="Apple Seed Medical"
+                alt="Appleseed Medical"
                 width={180}
                 height={44}
                 className="h-9 sm:h-10 md:h-11 w-auto"
@@ -112,7 +112,7 @@ export function Navbar() {
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <a
-                href="tel:+18552733633"
+                href="tel:+18582995458"
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 transition-all duration-300"
               >
                 <Phone className="h-4 w-4" />
@@ -199,11 +199,11 @@ export function Navbar() {
           {/* Mobile CTAs */}
           <div className="mt-6 pt-6 border-t border-slate-100 space-y-3">
             <a
-              href="tel:+18552733633"
+              href="tel:+18582995458"
               className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-colors"
             >
               <Phone className="h-4 w-4" />
-              (855) 273-3633
+              (858) 299-5458
             </a>
             <Button asChild className="w-full shadow-md shadow-primary/20">
               <Link

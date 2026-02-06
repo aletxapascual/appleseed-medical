@@ -54,7 +54,7 @@ export function Footer() {
                   className="text-base px-8 border-primary/30 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300"
                   asChild
                 >
-                  <a href="tel:+18552733633" className="flex items-center gap-2">
+                  <a href="tel:+18582995458" className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />
                     Call Us
                   </a>
@@ -73,7 +73,7 @@ export function Footer() {
           <div className="max-w-md">
             <Image
               src="/logos/appleseed_N%20Horizontal.svg"
-              alt="Apple Seed Medical"
+              alt="Appleseed Medical"
               width={200}
               height={48}
               className="h-12 w-auto brightness-0 invert mb-5"
@@ -101,7 +101,7 @@ export function Footer() {
         <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 py-8 md:py-12">
           <StaggerItem>
             <a
-              href="tel:+18552733633"
+              href="tel:+18582995458"
               className="group flex items-center gap-4 p-5 rounded-2xl bg-primary-dark/40 hover:bg-primary-dark/60 transition-all duration-300"
             >
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-400/20 flex items-center justify-center group-hover:bg-blue-400/30 transition-colors">
@@ -109,7 +109,7 @@ export function Footer() {
               </div>
               <div>
                 <p className="text-xs text-blue-300/60 uppercase tracking-wider mb-1">Phone</p>
-                <p className="text-white font-semibold">(855) 273-3633</p>
+                <p className="text-white font-semibold">(858) 299-5458</p>
               </div>
             </a>
           </StaggerItem>
@@ -136,7 +136,7 @@ export function Footer() {
               </div>
               <div>
                 <p className="text-xs text-blue-300/60 uppercase tracking-wider mb-1">Location</p>
-                <p className="text-white font-semibold">Austin, Texas</p>
+                <p className="text-white font-semibold">San Diego, CA</p>
               </div>
             </div>
           </StaggerItem>
@@ -145,7 +145,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8">
           <p className="text-sm text-blue-200/60">
-            © {new Date().getFullYear()} Apple Seed Medical. All rights reserved.
+            © {new Date().getFullYear()} Appleseed Medical. All rights reserved.
           </p>
           <div className="flex items-center gap-8">
             <Link href="#" className="text-sm text-blue-200/60 hover:text-white transition-colors">

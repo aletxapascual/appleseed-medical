@@ -11,11 +11,11 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Apple Seed Medical | Advanced Wound Care Solutions",
+  title: "Appleseed Medical | Advanced Wound Care Solutions",
   description: "Your trusted partner for advanced wound care products. Direct access to premium manufacturers with next-day shipping and compliance support.",
   keywords: ["wound care", "medical supplies", "amniotic tissue", "collagen matrix", "healthcare"],
   openGraph: {
-    title: "Apple Seed Medical | Advanced Wound Care Solutions",
+    title: "Appleseed Medical | Advanced Wound Care Solutions",
     description: "Direct access to premium wound care products from leading manufacturers.",
     type: "website",
   },

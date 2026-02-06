@@ -60,7 +60,7 @@ export function SolutionsSection() {
           </FadeUp>
           <FadeUp delay={0.1}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4 leading-[1.1] tracking-tight">
-              The Difference With Apple Seed
+              The Difference With Appleseed
             </h2>
           </FadeUp>
           <FadeUp delay={0.2}>

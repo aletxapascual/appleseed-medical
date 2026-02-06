@@ -28,7 +28,8 @@
       "Bash(git branch:*)",
       "Bash(git commit:*)",
       "Bash(git push)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nFix Prisma build for Vercel deployment\n\n- Add prisma generate to build script\n- Add postinstall hook for Prisma client generation\n- Fix Prisma import path\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix Prisma build for Vercel deployment\n\n- Add prisma generate to build script\n- Add postinstall hook for Prisma client generation\n- Fix Prisma import path\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nUpdate contact info to San Diego and rebrand to Appleseed\n\n- Change phone number from (855) 273-3633 to (858) 299-5458\n- Update location from Austin, TX to San Diego, CA\n- Standardize branding from \"Apple Seed\" to \"Appleseed\" throughout\n- Update timezone from EST to PST on contact page\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")"
     ]
   }
 }

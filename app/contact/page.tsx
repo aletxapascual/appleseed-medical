@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/sections/ContactForm"
 import { Clock, Phone, Mail, MapPin, MessageSquare, Headphones, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Contact Us | Apple Seed Medical",
+  title: "Contact Us | Appleseed Medical",
   description: "Skip the sales pitch. Reach our team directly for access, questions, orders, or support. Response within four hours guaranteed.",
 }
 
@@ -11,9 +11,9 @@ const contactMethods = [
   {
     icon: Phone,
     title: "Phone",
-    value: "(855) 273-3633",
-    href: "tel:+18552733633",
-    description: "Mon-Fri, 8AM-6PM EST",
+    value: "(858) 299-5458",
+    href: "tel:+18582995458",
+    description: "Mon-Fri, 8AM-6PM PST",
   },
   {
     icon: Mail,
@@ -25,9 +25,9 @@ const contactMethods = [
   {
     icon: MapPin,
     title: "Office",
-    value: "Austin, TX",
+    value: "San Diego, CA",
     href: "#",
-    description: "1250 Innovation Drive",
+    description: "San Diego, California",
   },
 ]
 

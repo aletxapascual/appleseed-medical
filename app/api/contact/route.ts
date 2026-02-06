@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     if (resend) {
       try {
         await resend.emails.send({
-          from: "Apple Seed Medical <noreply@appleseedmedical.com>",
+          from: "Appleseed Medical <noreply@appleseedmedical.com>",
           to: ["contact@appleseedmedical.com"],
           subject: `New Contact Form Submission from ${data.firstName} ${data.lastName}`,
           html: `
@@ -46,9 +46,9 @@ export async function POST(request: Request) {
 
         // Send confirmation email to user
         await resend.emails.send({
-          from: "Apple Seed Medical <noreply@appleseedmedical.com>",
+          from: "Appleseed Medical <noreply@appleseedmedical.com>",
           to: [data.email],
-          subject: "Thank you for contacting Apple Seed Medical",
+          subject: "Thank you for contacting Appleseed Medical",
           html: `
             <h2>Thank you for reaching out!</h2>
             <p>Dear ${data.firstName},</p>
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
             <p>In the meantime, feel free to explore our product catalog or learn more about how we can help your practice.</p>
             <br>
             <p>Best regards,</p>
-            <p>The Apple Seed Medical Team</p>
+            <p>The Appleseed Medical Team</p>
           `,
         });
       } catch (emailError) {

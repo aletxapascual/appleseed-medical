@@ -40,7 +40,7 @@ export function HeroSection() {
 
             <FadeUp delay={0.2}>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mb-10">
-                No pressure. Direct access to virtually every wound care product with remarkably prompt service and next-day shipping. Experience the difference with Apple Seed Medical.
+                No pressure. Direct access to virtually every wound care product with remarkably prompt service and next-day shipping. Experience the difference with Appleseed Medical.
               </p>
             </FadeUp>
 
