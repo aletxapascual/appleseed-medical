@@ -29,7 +29,7 @@ export function HeroSection() {
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-end min-h-screen py-20 lg:py-0 lg:pb-20 lg:-mt-[250px]">
           {/* Content */}
-          <div className="order-2 lg:order-1 lg:col-span-5">
+          <div className="order-1 lg:order-1 lg:col-span-5 -mt-[70px] lg:mt-0">
             {/* Premium Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -141,7 +141,7 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative order-1 lg:order-2 lg:col-span-7"
+            className="relative order-2 lg:order-2 lg:col-span-7"
           >
             <div className="relative">
               {/* Premium Glow Effect */}
