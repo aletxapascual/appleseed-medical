@@ -1,15 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { Building2, CheckCircle2 } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
 import { FadeUp, SlideInRight, StaggerContainer, StaggerItem } from "@/components/ui/motion"
-
-const manufacturers = [
-  { name: "Bio Tissue Technologies", specialty: "Amniotic Products" },
-  { name: "Regenerative Sciences", specialty: "Tissue Matrix" },
-  { name: "My Medicics Group", specialty: "Advanced Wound Care" },
-  { name: "Amnio Technology", specialty: "Dual Layer" },
-]
 
 const benefits = [
   "FDA-approved manufacturers only",
@@ -20,9 +13,9 @@ const benefits = [
 
 export function TrustedManufacturersSection() {
   return (
-    <section className="bg-secondary">
-      <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section className="bg-secondary relative overflow-hidden">
+      <div className="container mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
           <div>
             <FadeUp>
@@ -42,7 +35,7 @@ export function TrustedManufacturersSection() {
             </FadeUp>
 
             {/* Benefits List */}
-            <StaggerContainer staggerDelay={0.1} className="mb-8">
+            <StaggerContainer staggerDelay={0.1} className="mb-10">
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <StaggerItem key={index}>
@@ -74,25 +67,52 @@ export function TrustedManufacturersSection() {
             </FadeUp>
           </div>
 
-          {/* Manufacturer Cards */}
+          {/* Image collage */}
           <SlideInRight>
-            <StaggerContainer staggerDelay={0.1} className="grid grid-cols-2 gap-4">
-              {manufacturers.map((manufacturer, index) => (
-                <StaggerItem key={index}>
-                  <div className="group bg-white hover:bg-primary-light rounded-2xl p-6 lg:p-8 transition-all duration-300 border border-border hover:border-primary/20 shadow-sm hover:shadow-lg">
-                    <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-br from-primary-light to-secondary flex items-center justify-center mb-4 group-hover:from-primary/20 group-hover:to-primary-light transition-colors">
-                      <Building2 className="h-8 w-8 lg:h-10 lg:w-10 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-1 text-sm lg:text-base">
-                      {manufacturer.name}
-                    </h3>
-                    <p className="text-xs lg:text-sm text-muted-foreground">
-                      {manufacturer.specialty}
-                    </p>
+            <div className="relative">
+              {/* Glow behind */}
+              <div className="absolute -inset-8 bg-gradient-to-br from-primary/10 to-sky-400/10 rounded-[3rem] blur-3xl" />
+
+              <div className="relative grid grid-cols-2 gap-4">
+                {/* Top-left tall image */}
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
+                    alt="Medical laboratory research"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                </div>
+
+                {/* Right column — two stacked images */}
+                <div className="space-y-4">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                    <Image
+                      src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?q=80&w=800&auto=format&fit=crop"
+                      alt="Advanced wound care products"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
                   </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                    <Image
+                      src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop"
+                      alt="Healthcare professional consultation"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-slate-100 px-6 py-4 z-10">
+                <p className="text-center text-sm font-semibold text-foreground">Trusted by healthcare providers nationwide</p>
+              </div>
+            </div>
           </SlideInRight>
         </div>
       </div>

@@ -1,74 +1,58 @@
 "use client"
 
+import Image from "next/image"
 import { PackageOpen, Zap, Handshake, HeartPulse, type LucideIcon } from "lucide-react"
-import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/motion"
-import { GlowingEffect } from "@/components/ui/glowing-effect"
+import { FadeUp, SlideInLeft, SlideInRight, StaggerContainer, StaggerItem } from "@/components/ui/motion"
 
 const solutions: {
   icon: LucideIcon
   title: string
   description: string
-  color: { bg: string; text: string; accent: string; glow: string }
+  image: string
+  color: { bg: string; text: string; accent: string }
 }[] = [
   {
     icon: PackageOpen,
     title: "Access",
     description:
       "Direct access to virtually every wound care product on the market — no intermediaries, no restrictions.",
-    color: {
-      bg: "bg-cyan-500/10",
-      text: "text-cyan-600",
-      accent: "bg-cyan-500",
-      glow: "hover:shadow-cyan-500/20",
-    },
+    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-cyan-500/10", text: "text-cyan-600", accent: "bg-cyan-500" },
   },
   {
     icon: Zap,
     title: "Speed",
     description:
       "Remarkably prompt service with next-day shipping so your patients never have to wait.",
-    color: {
-      bg: "bg-emerald-500/10",
-      text: "text-emerald-600",
-      accent: "bg-emerald-500",
-      glow: "hover:shadow-emerald-500/20",
-    },
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-emerald-500/10", text: "text-emerald-600", accent: "bg-emerald-500" },
   },
   {
     icon: Handshake,
     title: "Manufacturer Relationships",
     description:
       "Strong partnerships with premier manufacturers of advanced wound care products.",
-    color: {
-      bg: "bg-amber-500/10",
-      text: "text-amber-600",
-      accent: "bg-amber-500",
-      glow: "hover:shadow-amber-500/20",
-    },
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-amber-500/10", text: "text-amber-600", accent: "bg-amber-500" },
   },
   {
     icon: HeartPulse,
     title: "Clinical Quality",
     description:
       "Clinical-grade, evidence-based product selection from trusted, FDA-approved manufacturers.",
-    color: {
-      bg: "bg-violet-500/10",
-      text: "text-violet-600",
-      accent: "bg-violet-500",
-      glow: "hover:shadow-violet-500/20",
-    },
+    image: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-violet-500/10", text: "text-violet-600", accent: "bg-violet-500" },
   },
 ]
 
 export function SolutionsSection() {
   return (
-    <section className="bg-gradient-to-b from-white via-slate-50/30 to-white relative">
-      {/* Subtle background texture */}
+    <section className="bg-gradient-to-b from-white via-slate-50/30 to-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
 
       <div className="container mx-auto relative z-10">
         {/* Centered section header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
           <FadeUp>
             <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-4">
               Why Choose Us
@@ -86,45 +70,50 @@ export function SolutionsSection() {
           </FadeUp>
         </div>
 
-        {/* 4-column card grid */}
-        <StaggerContainer staggerDelay={0.12} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-          {solutions.map((solution, index) => (
-            <StaggerItem key={index}>
-              <div
-                className={`relative group p-6 md:p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl ${solution.color.glow} transition-all duration-500 hover:-translate-y-1.5 h-full text-center`}
-              >
-                <GlowingEffect
-                  spread={40}
-                  glow={true}
-                  proximity={64}
-                  inactiveZone={0.01}
-                  borderWidth={2}
-                />
-                <div className="relative z-10 flex flex-col items-center">
-                  {/* Colored icon */}
-                  <div
-                    className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl ${solution.color.bg} flex items-center justify-center mb-5`}
-                  >
-                    <solution.icon className={`h-7 w-7 ${solution.color.text}`} />
+        {/* Alternating rows with images */}
+        <div className="space-y-20 md:space-y-28">
+          {solutions.map((solution, index) => {
+            const isEven = index % 2 === 0
+            const TextWrapper = isEven ? SlideInLeft : SlideInRight
+            const ImageWrapper = isEven ? SlideInRight : SlideInLeft
+
+            return (
+              <div key={index} className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Text */}
+                <TextWrapper className={isEven ? "lg:order-1" : "lg:order-2"}>
+                  <div>
+                    <div className={`w-14 h-14 rounded-2xl ${solution.color.bg} flex items-center justify-center mb-6`}>
+                      <solution.icon className={`h-7 w-7 ${solution.color.text}`} />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 tracking-tight">
+                      {solution.title}
+                    </h3>
+                    <div className={`h-1 w-12 ${solution.color.accent} rounded-full mb-5`} />
+                    <p className="text-muted-foreground text-lg leading-relaxed">
+                      {solution.description}
+                    </p>
                   </div>
+                </TextWrapper>
 
-                  {/* Title + accent line */}
-                  <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
-                    {solution.title}
-                  </h3>
-                  <div
-                    className={`h-0.5 w-8 ${solution.color.accent} rounded-full mb-4 transition-all duration-500 group-hover:w-12`}
-                  />
-
-                  {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {solution.description}
-                  </p>
-                </div>
+                {/* Image */}
+                <ImageWrapper className={isEven ? "lg:order-2" : "lg:order-1"}>
+                  <div className="relative">
+                    <div className={`absolute -inset-4 rounded-[2rem] blur-2xl opacity-20 ${solution.color.accent}`} />
+                    <div className="relative aspect-[3/2] rounded-2xl overflow-hidden shadow-xl">
+                      <Image
+                        src={solution.image}
+                        alt={solution.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                    </div>
+                  </div>
+                </ImageWrapper>
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
