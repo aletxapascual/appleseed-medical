@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Phone } from "lucide-react"
+import { Phone, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -24,156 +24,203 @@ export function Navbar() {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border"
-          : "bg-transparent"
-      )}
-    >
-      <div className="container mx-auto">
-        {/* Top Bar - only show when scrolled on desktop */}
-        <div className={cn(
-          "hidden lg:flex items-center justify-end py-2 text-sm border-b transition-colors duration-300",
-          isScrolled ? "border-border/50" : "border-white/10"
-        )}>
-          <a
-            href="tel:+18552733633"
-            className={cn(
-              "flex items-center gap-2 transition-colors",
-              isScrolled
-                ? "text-muted-foreground hover:text-primary"
-                : "text-white/80 hover:text-white"
-            )}
-          >
-            <Phone className="h-3.5 w-3.5" />
-            (855) 273-3633
-          </a>
-        </div>
-
-        {/* Main Navigation */}
-        <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/logos/appleseed_Horizontal.svg"
-              alt="Apple Seed Medical"
-              width={200}
-              height={48}
-              className={cn(
-                "h-12 w-auto transition-all duration-300",
-                !isScrolled && "brightness-0 invert"
-              )}
-              priority
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors relative py-2",
-                  isScrolled
-                    ? pathname === link.href
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary"
-                    : pathname === link.href
-                      ? "text-white"
-                      : "text-white/80 hover:text-white",
-                  pathname === link.href &&
-                    "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:rounded-full",
-                  pathname === link.href && isScrolled
-                    ? "after:bg-primary"
-                    : pathname === link.href && "after:bg-white"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="outline"
-              className={cn(
-                "transition-colors",
-                !isScrolled && "border-white/30 text-white hover:bg-white/10"
-              )}
-              asChild
-            >
-              <a href="tel:+18552733633">Call Us</a>
-            </Button>
-            <Button
-              className={cn(
-                !isScrolled && "bg-white text-primary hover:bg-white/90"
-              )}
-              asChild
-            >
-              <Link href="/contact">Get Started</Link>
-            </Button>
+    <header className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md">
+      {/* Premium Top Bar */}
+      <div
+        className={cn(
+          "hidden lg:block transition-all duration-500 overflow-hidden",
+          isScrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+        )}
+      >
+        <div className="bg-gradient-to-r from-primary-dark via-primary to-primary-dark">
+          <div className="container mx-auto">
+            <div className="flex items-center justify-between py-2.5 text-sm">
+              <p className="text-white/90 font-light tracking-wide">
+                Trusted by leading healthcare providers nationwide
+              </p>
+              <div className="flex items-center gap-6">
+                <a
+                  href="tel:+18552733633"
+                  className="flex items-center gap-2 text-white/90 hover:text-white transition-colors font-medium"
+                >
+                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                    <Phone className="h-3 w-3" />
+                  </div>
+                  (855) 273-3633
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className={cn(
-              "md:hidden",
-              !isScrolled && "text-white hover:bg-white/10"
-            )}
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+      {/* Main Navigation */}
+      <div
+        className={cn(
+          "bg-transparent transition-all duration-500",
+          isScrolled && "shadow-elevated"
+        )}
+      >
+        <div className="container mx-auto">
+          <div className="flex h-[64px] md:h-[72px] items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center relative z-10">
+              <Image
+                src="/logos/appleseed_Horizontal.svg"
+                alt="Apple Seed Medical"
+                width={180}
+                height={44}
+                className="h-9 sm:h-10 md:h-11 w-auto"
+                priority
+              />
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center">
+              <div className="flex items-center gap-1">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        "relative px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 rounded-lg group",
+                        isActive
+                          ? "text-primary"
+                          : "text-slate-700 hover:text-primary hover:bg-primary/5"
+                      )}
+                    >
+                      {link.label}
+                      {/* Active indicator */}
+                      <span
+                        className={cn(
+                          "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary rounded-full transition-all duration-300",
+                          isActive ? "w-6" : "w-0 group-hover:w-4"
+                        )}
+                      />
+                    </Link>
+                  )
+                })}
+              </div>
+            </nav>
+
+            {/* Desktop CTAs */}
+            <div className="hidden lg:flex items-center gap-3">
+              <a
+                href="tel:+18552733633"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 transition-all duration-300"
+              >
+                <Phone className="h-4 w-4" />
+                <span className="hidden xl:inline">Call Us</span>
+              </a>
+              <Button
+                className="group font-medium tracking-wide bg-primary hover:bg-primary-dark text-white shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
+                asChild
+              >
+                <Link href="/contact" className="flex items-center gap-1.5">
+                  Get Started
+                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 transition-all duration-300"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className="sr-only">Menu</span>
+              <div className="relative w-5 h-4">
+                <span
+                  className={cn(
+                    "absolute left-0 w-5 h-0.5 bg-slate-700 rounded-full transition-all duration-300",
+                    isOpen ? "top-1.5 rotate-45" : "top-0"
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute left-0 top-1.5 w-5 h-0.5 bg-slate-700 rounded-full transition-all duration-300",
+                    isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute left-0 w-5 h-0.5 bg-slate-700 rounded-full transition-all duration-300",
+                    isOpen ? "top-1.5 -rotate-45" : "top-3"
+                  )}
+                />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-border shadow-lg">
-          <nav className="container mx-auto flex flex-col py-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "py-3 text-base font-medium transition-colors border-b border-border/50",
-                  pathname === link.href
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex flex-col gap-3 mt-6">
-              <Button variant="outline" asChild className="w-full">
-                <a href="tel:+18552733633">
-                  <Phone className="h-4 w-4 mr-2" />
-                  (855) 273-3633
-                </a>
-              </Button>
-              <Button asChild className="w-full">
-                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                  Get Started
+      <div
+        className={cn(
+          "lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl shadow-black/10 transition-all duration-300 overflow-hidden",
+          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <nav className="container mx-auto py-4">
+          <div className="space-y-1">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between py-3 px-4 rounded-lg text-base font-medium transition-all duration-200",
+                    isActive
+                      ? "bg-primary/5 text-primary"
+                      : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                  )}
+                >
+                  {link.label}
+                  <ChevronRight
+                    className={cn(
+                      "h-4 w-4 transition-colors",
+                      isActive ? "text-primary" : "text-slate-400"
+                    )}
+                  />
                 </Link>
-              </Button>
-            </div>
-          </nav>
-        </div>
-      )}
+              )
+            })}
+          </div>
+
+          {/* Mobile CTAs */}
+          <div className="mt-6 pt-6 border-t border-slate-100 space-y-3">
+            <a
+              href="tel:+18552733633"
+              className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              (855) 273-3633
+            </a>
+            <Button asChild className="w-full shadow-md shadow-primary/20">
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center justify-center gap-1.5"
+              >
+                Get Started
+                <ChevronRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </nav>
+      </div>
     </header>
   )
 }
