@@ -1,15 +1,16 @@
 "use client"
 
+import Image from "next/image"
 import { Workflow, ShieldCheck, TrendingUp, Brain, type LucideIcon } from "lucide-react"
 import { DottedGlowBackground } from "@/components/ui/dotted-glow-background"
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/motion"
-import { GlowingEffect } from "@/components/ui/glowing-effect"
 
 const pillars: {
   icon: LucideIcon
   category: string
   title: string
   description: string
+  image: string
   color: { accent: string; text: string; bg: string }
 }[] = [
   {
@@ -18,11 +19,8 @@ const pillars: {
     title: "Smarter Workflows",
     description:
       "From eligibility through product access in one place. Streamlined processes that save time and reduce errors.",
-    color: {
-      accent: "bg-cyan-500",
-      text: "text-cyan-400",
-      bg: "bg-cyan-500/10",
-    },
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    color: { accent: "bg-cyan-500", text: "text-cyan-400", bg: "bg-cyan-500/10" },
   },
   {
     icon: ShieldCheck,
@@ -30,11 +28,8 @@ const pillars: {
     title: "Compliance Confidence",
     description:
       "With documentation support and clear visibility. Automated audit trails and regulatory compliance built-in.",
-    color: {
-      accent: "bg-emerald-500",
-      text: "text-emerald-400",
-      bg: "bg-emerald-500/10",
-    },
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop",
+    color: { accent: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10" },
   },
   {
     icon: TrendingUp,
@@ -42,11 +37,8 @@ const pillars: {
     title: "Transparent Pricing & Revenue Cycle Support",
     description:
       "Clear pricing with no hidden fees. Revenue cycle support to help you maximize reimbursement while maintaining full compliance.",
-    color: {
-      accent: "bg-amber-500",
-      text: "text-amber-400",
-      bg: "bg-amber-500/10",
-    },
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop",
+    color: { accent: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10" },
   },
   {
     icon: Brain,
@@ -54,11 +46,8 @@ const pillars: {
     title: "Purpose-Built for Wound Care Access & Documentation",
     description:
       "Built specifically for wound care professionals. Streamlined access to products with documentation support that simplifies your workflow.",
-    color: {
-      accent: "bg-violet-500",
-      text: "text-violet-400",
-      bg: "bg-violet-500/10",
-    },
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop",
+    color: { accent: "bg-violet-500", text: "text-violet-400", bg: "bg-violet-500/10" },
   },
 ]
 
@@ -75,7 +64,7 @@ export function FourPillarsSection() {
       <div className="relative z-10 py-12 md:py-20 lg:py-32">
         <div className="container mx-auto">
           {/* Section header */}
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
             <FadeUp>
               <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">
                 Our Foundation
@@ -93,29 +82,30 @@ export function FourPillarsSection() {
             </FadeUp>
           </div>
 
-          {/* 2x2 Grid */}
+          {/* 2x2 Grid — image cards */}
           <StaggerContainer staggerDelay={0.12} className="grid md:grid-cols-2 gap-5 md:gap-6 max-w-5xl mx-auto">
             {pillars.map((pillar, index) => (
               <StaggerItem key={index}>
-                <div className="relative group h-full rounded-2xl overflow-hidden bg-white/[0.06] backdrop-blur-sm border border-white/[0.08] hover:border-white/[0.15] transition-all duration-500">
-                  <GlowingEffect
-                    spread={40}
-                    glow={true}
-                    proximity={64}
-                    inactiveZone={0.01}
-                    borderWidth={2}
-                    variant="white"
-                  />
+                <div className="relative group h-full rounded-2xl overflow-hidden">
+                  {/* Background image */}
+                  <div className="absolute inset-0">
+                    <Image
+                      src={pillar.image}
+                      alt={pillar.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Dark overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/85 to-slate-900/60" />
+                  </div>
 
                   {/* Colored top accent bar */}
-                  <div className={`h-1 ${pillar.color.accent}`} />
+                  <div className={`relative h-1 ${pillar.color.accent}`} />
 
                   <div className="relative z-10 p-6 md:p-8">
                     {/* Icon + category label */}
                     <div className="flex items-center gap-3 mb-5">
-                      <div
-                        className={`w-11 h-11 rounded-xl ${pillar.color.bg} flex items-center justify-center`}
-                      >
+                      <div className={`w-11 h-11 rounded-xl ${pillar.color.bg} backdrop-blur-sm flex items-center justify-center`}>
                         <pillar.icon className={`h-5 w-5 ${pillar.color.text}`} />
                       </div>
                       <span className={`text-xs font-semibold tracking-widest uppercase ${pillar.color.text}`}>
@@ -127,12 +117,10 @@ export function FourPillarsSection() {
                     <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight leading-snug">
                       {pillar.title}
                     </h3>
-                    <div
-                      className={`h-0.5 w-8 ${pillar.color.accent} rounded-full mb-4 transition-all duration-500 group-hover:w-14`}
-                    />
+                    <div className={`h-0.5 w-8 ${pillar.color.accent} rounded-full mb-4 transition-all duration-500 group-hover:w-14`} />
 
-                    {/* Always-visible description */}
-                    <p className="text-slate-400 text-sm leading-relaxed">
+                    {/* Description */}
+                    <p className="text-slate-300 text-sm leading-relaxed">
                       {pillar.description}
                     </p>
                   </div>
