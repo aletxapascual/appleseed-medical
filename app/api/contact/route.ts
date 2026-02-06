@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
 import { contactFormSchema } from "@/lib/validations";
 import { Resend } from "resend";
 
@@ -25,19 +24,6 @@ export async function POST(request: Request) {
     }
 
     const data = validationResult.data;
-
-    // Store in database
-    const submission = await prisma.contactSubmission.create({
-      data: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phone: data.phone || null,
-        practiceName: data.practiceName,
-        practiceType: data.practiceType,
-        message: data.message,
-      },
-    });
 
     // Send notification email if Resend is configured
     if (resend) {
@@ -75,14 +61,12 @@ export async function POST(request: Request) {
         });
       } catch (emailError) {
         console.error("Failed to send email:", emailError);
-        // Don't fail the request if email fails - the submission is still saved
       }
     }
 
     return NextResponse.json({
       success: true,
       message: "Thank you for your message. We'll be in touch soon!",
-      id: submission.id,
     });
   } catch (error) {
     console.error("Contact form error:", error);
