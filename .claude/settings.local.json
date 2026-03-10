@@ -13,7 +13,23 @@
       "Bash(npx create-next-app@latest:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(timeout 10 npm run dev:*)"
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(npx prisma init:*)",
+      "Bash(npx prisma migrate:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:ui.aceternity.com)",
+      "WebSearch",
+      "Bash(npm ls:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd premium styling, stock images, and Aceternity UI components\n\n- Add Unsplash stock images throughout site (hero, sections, pages)\n- Implement premium design system with lighter blue palette\n- Add Aceternity grid backgrounds and dot patterns to blue sections\n- Create GlowingEffect component for interactive card borders\n- Enhance hero with bento-grid layout and stat cards\n- Add glass-morphism, elevated shadows, and glow animations\n- Remove FourPillarsSection from homepage\n- Add motion utilities for animations\n- Configure next.config.ts for Unsplash images\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix Prisma build for Vercel deployment\n\n- Add prisma generate to build script\n- Add postinstall hook for Prisma client generation\n- Fix Prisma import path\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nUpdate contact info to San Diego and rebrand to Appleseed\n\n- Change phone number from (855) 273-3633 to (858) 299-5458\n- Update location from Austin, TX to San Diego, CA\n- Standardize branding from \"Apple Seed\" to \"Appleseed\" throughout\n- Update timezone from EST to PST on contact page\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")"
     ]
   }
 }

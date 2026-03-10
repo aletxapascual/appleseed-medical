@@ -17,22 +17,17 @@ export const categories = [
 
 export const manufacturers = [
   "All Manufacturers",
-  "BioTissue Technologies",
+  "Bio Tissue Technologies",
   "Regenerative Sciences",
-  "Integra LifeSciences",
+  "My Medicics Group",
   "Amnio Technology",
-  "MiMedx Group",
-  "Organogenesis",
-  "Applied Biologics",
-  "KeraNetics",
-  "Coloplast",
 ]
 
 export const products: Product[] = [
   {
     id: "1",
     name: "Amniotic Tri-Layer Allograft",
-    manufacturer: "BioTissue Technologies",
+    manufacturer: "Bio Tissue Technologies",
     qCode: "Q4100",
     sizes: ["2x2", "2x3", "4x4", "4x6", "4x8"],
     description: "Triple layer amniotic allograft membrane designed to provide structural support and preserve native signals for advanced wound healing",
@@ -50,7 +45,7 @@ export const products: Product[] = [
   {
     id: "3",
     name: "Collagen Matrix Sheets",
-    manufacturer: "Integra LifeSciences",
+    manufacturer: "My Medicics Group",
     qCode: "A6010",
     sizes: ["1.5x1.5", "2x2", "3x3", "4x4", "5x5", "6x7", "6x21"],
     description: "Type I acellular collagen scaffold that supports tissue regeneration and provides hemostatic properties",
@@ -68,7 +63,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "Dual Layer Amnion Graft",
-    manufacturer: "MiMedx Group",
+    manufacturer: "Bio Tissue Technologies",
     qCode: "Q4175",
     sizes: ["2x2", "2x3", "4x4", "4x6", "4x8"],
     description: "Dual layer dehydrated amnion membrane for added structural support and enhanced healing outcomes",
@@ -77,7 +72,7 @@ export const products: Product[] = [
   {
     id: "6",
     name: "Collagen Mini Grafts",
-    manufacturer: "Organogenesis",
+    manufacturer: "Regenerative Sciences",
     qCode: "A6021",
     sizes: ["6 cm", "21 cm"],
     description: "Acellular collagen mini grafts for targeted applications in small wound areas",
@@ -86,7 +81,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "Dehydrated Amnion Membrane",
-    manufacturer: "Applied Biologics",
+    manufacturer: "My Medicics Group",
     qCode: "Q4140",
     sizes: ["2x2", "2x3", "4x4", "4x6", "4x8"],
     description: "Preserves extracellular matrix and native biological properties while providing barrier protection",
@@ -95,7 +90,7 @@ export const products: Product[] = [
   {
     id: "8",
     name: "Keratin Matrix",
-    manufacturer: "KeraNetics",
+    manufacturer: "Amnio Technology",
     qCode: "A6196",
     sizes: ["2x3", "5x5", "10x10"],
     description: "Absorbable acellular keratin matrix that dissolves into the wound and supports natural regeneration processes",
@@ -104,7 +99,7 @@ export const products: Product[] = [
   {
     id: "9",
     name: "Fenestrated Collagen Matrix",
-    manufacturer: "Coloplast",
+    manufacturer: "Regenerative Sciences",
     qCode: "A6024",
     sizes: ["3x3", "5x5"],
     description: "Fenestrated collagen matrix designed for optimal fluid management and tissue integration",

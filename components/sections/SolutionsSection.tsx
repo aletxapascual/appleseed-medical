@@ -1,100 +1,118 @@
-import Image from "next/image"
-import { DollarSign, Network, Award, Cpu } from "lucide-react"
+"use client"
 
-const solutions = [
+import Image from "next/image"
+import { PackageOpen, Zap, Handshake, HeartPulse, type LucideIcon } from "lucide-react"
+import { FadeUp, SlideInLeft, SlideInRight, StaggerContainer, StaggerItem } from "@/components/ui/motion"
+
+const solutions: {
+  icon: LucideIcon
+  title: string
+  description: string
+  image: string
+  color: { bg: string; text: string; accent: string }
+}[] = [
   {
-    icon: DollarSign,
-    title: "Revenue Optimization",
-    description: "Advanced billing analytics and transparent pricing models that maximize practice profitability while ensuring compliance.",
+    icon: PackageOpen,
+    title: "Access",
+    description:
+      "Direct access to virtually every wound care product on the market — no intermediaries, no restrictions.",
+    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-cyan-500/10", text: "text-cyan-600", accent: "bg-cyan-500" },
   },
   {
-    icon: Network,
-    title: "Direct Access Network",
-    description: "Streamlined procurement system that eliminates intermediaries and provides direct manufacturer relationships.",
+    icon: Zap,
+    title: "Speed",
+    description:
+      "Remarkably prompt service with next-day shipping so your patients never have to wait.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-emerald-500/10", text: "text-emerald-600", accent: "bg-emerald-500" },
   },
   {
-    icon: Award,
-    title: "Clinical Excellence",
-    description: "Evidence-based product selection from premier manufacturers specializing in advanced wound care technologies.",
+    icon: Handshake,
+    title: "Manufacturer Relationships",
+    description:
+      "Strong partnerships with premier manufacturers of advanced wound care products.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-amber-500/10", text: "text-amber-600", accent: "bg-amber-500" },
   },
   {
-    icon: Cpu,
-    title: "Intelligent Automation",
-    description: "AI-powered workflow optimization that seamlessly integrates documentation, ordering, and compliance management.",
+    icon: HeartPulse,
+    title: "Clinical Quality",
+    description:
+      "Clinical-grade, evidence-based product selection from trusted, FDA-approved manufacturers.",
+    image: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?q=80&w=800&auto=format&fit=crop",
+    color: { bg: "bg-violet-500/10", text: "text-violet-600", accent: "bg-violet-500" },
   },
 ]
 
 export function SolutionsSection() {
   return (
-    <section className="bg-white">
-      <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image Side */}
-          <div className="relative order-2 lg:order-1">
-            <div className="relative">
-              {/* Main Image */}
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary-light to-secondary overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center p-12">
-                  <Image
-                    src="/logos/appleseed_Vertical.svg"
-                    alt="Apple Seed Medical Solutions"
-                    width={300}
-                    height={300}
-                    className="opacity-20"
-                  />
-                </div>
-              </div>
+    <section className="bg-gradient-to-b from-white via-slate-50/30 to-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
 
-              {/* Floating Card */}
-              <div className="absolute -bottom-8 -right-8 bg-white rounded-2xl shadow-2xl p-6 max-w-[240px] border border-border">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center">
-                    <Network className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-foreground">50+</div>
-                    <div className="text-xs text-muted-foreground">Manufacturer Partners</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
-              <div className="absolute -bottom-4 right-1/4 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
-            </div>
-          </div>
-
-          {/* Content Side */}
-          <div className="order-1 lg:order-2">
-            <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">
+      <div className="container mx-auto relative z-10">
+        {/* Centered section header */}
+        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+          <FadeUp>
+            <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-4">
               Why Choose Us
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Comprehensive Solutions for Modern Healthcare
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4 leading-[1.1] tracking-tight">
+              The Difference With Appleseed
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-              Medical-grade solutions designed for modern healthcare practices
+          </FadeUp>
+          <FadeUp delay={0.2}>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+              A trusted medical supply partner with fast access to elite wound care products
             </p>
+          </FadeUp>
+        </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
-              {solutions.map((solution, index) => (
-                <div
-                  key={index}
-                  className="group p-6 rounded-xl bg-secondary hover:bg-primary-light transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 shadow-sm group-hover:shadow-md transition-shadow">
-                    <solution.icon className="h-6 w-6 text-primary" />
+        {/* Alternating rows with images */}
+        <div className="space-y-20 md:space-y-28">
+          {solutions.map((solution, index) => {
+            const isEven = index % 2 === 0
+            const TextWrapper = isEven ? SlideInLeft : SlideInRight
+            const ImageWrapper = isEven ? SlideInRight : SlideInLeft
+
+            return (
+              <div key={index} className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Text */}
+                <TextWrapper className={isEven ? "lg:order-1" : "lg:order-2"}>
+                  <div>
+                    <div className={`w-14 h-14 rounded-2xl ${solution.color.bg} flex items-center justify-center mb-6`}>
+                      <solution.icon className={`h-7 w-7 ${solution.color.text}`} />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 tracking-tight">
+                      {solution.title}
+                    </h3>
+                    <div className={`h-1 w-12 ${solution.color.accent} rounded-full mb-5`} />
+                    <p className="text-muted-foreground text-lg leading-relaxed">
+                      {solution.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {solution.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {solution.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+                </TextWrapper>
+
+                {/* Image */}
+                <ImageWrapper className={isEven ? "lg:order-2" : "lg:order-1"}>
+                  <div className="relative">
+                    <div className={`absolute -inset-4 rounded-[2rem] blur-2xl opacity-20 ${solution.color.accent}`} />
+                    <div className="relative aspect-[3/2] rounded-2xl overflow-hidden shadow-xl">
+                      <Image
+                        src={solution.image}
+                        alt={solution.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                    </div>
+                  </div>
+                </ImageWrapper>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,7 +14,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Send, CheckCircle2, MessageSquare } from "lucide-react"
+import { Send, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react"
+import { contactFormSchema, type ContactFormData } from "@/lib/validations"
 
 const practiceTypes = [
   "Solo Practice",
@@ -25,39 +27,72 @@ const practiceTypes = [
   "Other",
 ]
 
-const inquiryTypes = [
-  "Product Inquiry",
-  "Platform Demo Request",
-  "Pricing Information",
-  "Compliance Support",
-  "Technical Support",
-  "Partnership Opportunity",
-  "Other",
-]
-
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = React.useState(false)
-  const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [serverError, setServerError] = React.useState<string | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      practiceName: "",
+      practiceType: "",
+      message: "",
+    },
+  })
+
+  const practiceType = watch("practiceType")
+
+  const onSubmit = async (data: ContactFormData) => {
+    setServerError(null)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Something went wrong")
+      }
+
+      setIsSubmitted(true)
+      reset()
+    } catch (error) {
+      setServerError(
+        error instanceof Error
+          ? error.message
+          : "Failed to send message. Please try again."
+      )
+    }
   }
 
   if (isSubmitted) {
     return (
-      <div className="max-w-2xl mx-auto text-center py-16">
-        <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle2 className="h-10 w-10 text-green-600" />
+      <div className="text-center py-12">
+        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle2 className="h-8 w-8 text-green-600" />
         </div>
-        <h3 className="text-2xl font-bold text-foreground mb-3">Message Sent Successfully</h3>
-        <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-          Thank you for reaching out. Our team will respond within 4 hours during business hours.
+        <h3 className="text-xl font-bold text-foreground mb-2">Message Sent!</h3>
+        <p className="text-muted-foreground mb-6 text-sm">
+          We'll respond within 4 business hours.
         </p>
-        <Button size="lg" onClick={() => setIsSubmitted(false)}>
+        <Button variant="outline" onClick={() => setIsSubmitted(false)}>
           Send Another Message
         </Button>
       </div>
@@ -65,164 +100,141 @@ export function ContactForm() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="grid lg:grid-cols-5 gap-12">
-        {/* Left Column - Info */}
-        <div className="lg:col-span-2">
-          <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">
-            Contact Form
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Send us a Message
-          </h2>
-          <p className="text-muted-foreground mb-8">
-            Tell us about your practice and how we can help streamline your wound care delivery
-          </p>
-
-          {/* Decorative Element */}
-          <div className="hidden lg:block">
-            <div className="bg-gradient-to-br from-primary-light to-secondary rounded-2xl p-8">
-              <div className="flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <MessageSquare className="h-8 w-8 text-primary" />
-                  </div>
-                  <p className="text-foreground font-medium">We respond fast</p>
-                  <p className="text-sm text-muted-foreground">Within 4 business hours</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column - Form */}
-        <div className="lg:col-span-3">
-          <div className="bg-white rounded-2xl border border-border p-8 shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name and Title */}
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="Dr. Jane Smith"
-                    required
-                    className="h-11"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="title">Title / Role</Label>
-                  <Input
-                    id="title"
-                    name="title"
-                    placeholder="Wound Care Specialist"
-                    className="h-11"
-                  />
-                </div>
-              </div>
-
-              {/* Practice and Type */}
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <Label htmlFor="practice">Practice Name</Label>
-                  <Input
-                    id="practice"
-                    name="practice"
-                    placeholder="Austin Wound Care Center"
-                    className="h-11"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="practiceType">Practice Type</Label>
-                  <Select name="practiceType">
-                    <SelectTrigger className="h-11">
-                      <SelectValue placeholder="Select practice type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {practiceTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              {/* Email and Phone */}
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="doctor@practice.com"
-                    required
-                    className="h-11"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="(555) 123-4567"
-                    className="h-11"
-                  />
-                </div>
-              </div>
-
-              {/* Inquiry Type */}
-              <div className="space-y-2">
-                <Label htmlFor="inquiryType">How can we help?</Label>
-                <Select name="inquiryType" required>
-                  <SelectTrigger className="h-11">
-                    <SelectValue placeholder="Select an option" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {inquiryTypes.map((type) => (
-                      <SelectItem key={type} value={type}>
-                        {type}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Message */}
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell us about your current wound care challenges and how we can help streamline your practice..."
-                  rows={4}
-                  required
-                  className="resize-none"
-                />
-              </div>
-
-              <Button type="submit" size="lg" className="w-full text-base" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
-
-              <p className="text-center text-xs text-muted-foreground">
-                We typically respond within 4 business hours. For urgent matters, please call us directly.
-              </p>
-            </form>
-          </div>
-        </div>
+    <div>
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-foreground mb-1">Send a Message</h2>
+        <p className="text-sm text-muted-foreground">Fill out the form and we'll get back to you shortly.</p>
       </div>
+
+      {serverError && (
+        <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 flex items-start gap-2">
+          <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-red-700">{serverError}</p>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Name Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-1">
+            <Label htmlFor="firstName" className="text-xs">First Name *</Label>
+            <Input
+              id="firstName"
+              placeholder="Jane"
+              className={`h-10 ${errors.firstName ? "border-red-500" : ""}`}
+              {...register("firstName")}
+            />
+            {errors.firstName && (
+              <p className="text-xs text-red-600">{errors.firstName.message}</p>
+            )}
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="lastName" className="text-xs">Last Name *</Label>
+            <Input
+              id="lastName"
+              placeholder="Smith"
+              className={`h-10 ${errors.lastName ? "border-red-500" : ""}`}
+              {...register("lastName")}
+            />
+            {errors.lastName && (
+              <p className="text-xs text-red-600">{errors.lastName.message}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Email */}
+        <div className="space-y-1">
+          <Label htmlFor="email" className="text-xs">Email Address *</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="doctor@practice.com"
+            className={`h-10 ${errors.email ? "border-red-500" : ""}`}
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-xs text-red-600">{errors.email.message}</p>
+          )}
+        </div>
+
+        {/* Practice Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-1">
+            <Label htmlFor="practiceName" className="text-xs">Practice Name *</Label>
+            <Input
+              id="practiceName"
+              placeholder="Your Practice"
+              className={`h-10 ${errors.practiceName ? "border-red-500" : ""}`}
+              {...register("practiceName")}
+            />
+            {errors.practiceName && (
+              <p className="text-xs text-red-600">{errors.practiceName.message}</p>
+            )}
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="practiceType" className="text-xs">Practice Type *</Label>
+            <Select
+              value={practiceType}
+              onValueChange={(value) => setValue("practiceType", value, { shouldValidate: true })}
+            >
+              <SelectTrigger className={`h-10 ${errors.practiceType ? "border-red-500" : ""}`}>
+                <SelectValue placeholder="Select type" />
+              </SelectTrigger>
+              <SelectContent>
+                {practiceTypes.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.practiceType && (
+              <p className="text-xs text-red-600">{errors.practiceType.message}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Phone */}
+        <div className="space-y-1">
+          <Label htmlFor="phone" className="text-xs">Phone Number (Optional)</Label>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="(555) 123-4567"
+            className={`h-10 ${errors.phone ? "border-red-500" : ""}`}
+            {...register("phone")}
+          />
+          {errors.phone && (
+            <p className="text-xs text-red-600">{errors.phone.message}</p>
+          )}
+        </div>
+
+        {/* Message */}
+        <div className="space-y-1">
+          <Label htmlFor="message" className="text-xs">Message *</Label>
+          <Textarea
+            id="message"
+            placeholder="Tell us about your wound care needs..."
+            rows={3}
+            className={`resize-none ${errors.message ? "border-red-500" : ""}`}
+            {...register("message")}
+          />
+          {errors.message && (
+            <p className="text-xs text-red-600">{errors.message.message}</p>
+          )}
+        </div>
+
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? (
+            "Sending..."
+          ) : (
+            <>
+              Send Message
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </>
+          )}
+        </Button>
+      </form>
     </div>
   )
 }
