@@ -10,7 +10,7 @@ export type EmailOptions = {
 }
 
 export async function sendEmail(options: EmailOptions) {
-  const from = process.env.EMAIL_FROM || 'Your App <noreply@yourdomain.com>'
+  const from = process.env.EMAIL_FROM || 'Appleseed Medical <noreply@comcreate.org>'
 
   const { data, error } = await resend.emails.send({
     from,
