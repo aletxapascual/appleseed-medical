@@ -90,7 +90,7 @@ export function ContactForm() {
         </div>
         <h3 className="text-xl font-bold text-foreground mb-2">Message Sent!</h3>
         <p className="text-muted-foreground mb-6 text-sm">
-          We'll respond within 4 business hours.
+          We&apos;ll respond within 4 business hours.
         </p>
         <Button variant="outline" onClick={() => setIsSubmitted(false)}>
           Send Another Message
@@ -103,7 +103,7 @@ export function ContactForm() {
     <div>
       <div className="mb-6">
         <h2 className="text-xl font-bold text-foreground mb-1">Send a Message</h2>
-        <p className="text-sm text-muted-foreground">Fill out the form and we'll get back to you shortly.</p>
+        <p className="text-sm text-muted-foreground">Fill out the form and we&apos;ll get back to you shortly.</p>
       </div>
 
       {serverError && (

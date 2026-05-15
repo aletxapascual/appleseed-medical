@@ -73,7 +73,7 @@ export default function ContactPage() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-[1.1]">
-                Let's Start a
+                Let&apos;s Start a
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-500 to-blue-600">
                   Conversation
                 </span>
@@ -123,7 +123,7 @@ export default function ContactPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-cyan-500/20 rounded-3xl blur-2xl scale-95" />
 
               <div className="relative bg-white rounded-2xl md:rounded-3xl border border-border shadow-2xl shadow-primary/10 p-5 sm:p-6 md:p-8">
-                <ContactFormInline />
+                <ContactForm />
               </div>
             </div>
           </div>
@@ -132,9 +132,4 @@ export default function ContactPage() {
 
     </>
   )
-}
-
-// Inline version of the contact form for the new layout
-function ContactFormInline() {
-  return <ContactForm />
 }

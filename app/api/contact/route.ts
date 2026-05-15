@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/validations";
 import { sendEmail } from "@/lib/resend";
+import { escapeHtml } from "@/lib/escape-html";
 
 const NOTIFICATION_EMAIL = "contact@appleseedmedical.com";
 
@@ -22,6 +23,15 @@ export async function POST(request: Request) {
     }
 
     const data = validationResult.data;
+    const safe = {
+      firstName: escapeHtml(data.firstName),
+      lastName: escapeHtml(data.lastName),
+      email: escapeHtml(data.email),
+      phone: escapeHtml(data.phone || "Not provided"),
+      practiceName: escapeHtml(data.practiceName),
+      practiceType: escapeHtml(data.practiceType),
+      message: escapeHtml(data.message),
+    };
 
     // Send notification email to admin
     try {
@@ -30,13 +40,13 @@ export async function POST(request: Request) {
         subject: `New Contact Form Submission from ${data.firstName} ${data.lastName}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Phone:</strong> ${data.phone || "Not provided"}</p>
-          <p><strong>Practice:</strong> ${data.practiceName}</p>
-          <p><strong>Practice Type:</strong> ${data.practiceType}</p>
+          <p><strong>Name:</strong> ${safe.firstName} ${safe.lastName}</p>
+          <p><strong>Email:</strong> ${safe.email}</p>
+          <p><strong>Phone:</strong> ${safe.phone}</p>
+          <p><strong>Practice:</strong> ${safe.practiceName}</p>
+          <p><strong>Practice Type:</strong> ${safe.practiceType}</p>
           <h3>Message:</h3>
-          <p>${data.message}</p>
+          <p>${safe.message}</p>
         `,
       });
 
@@ -46,7 +56,7 @@ export async function POST(request: Request) {
         subject: "Thank you for contacting Appleseed Medical",
         html: `
           <h2>Thank you for reaching out!</h2>
-          <p>Dear ${data.firstName},</p>
+          <p>Dear ${safe.firstName},</p>
           <p>We've received your message and a member of our team will get back to you within 24-48 business hours.</p>
           <p>In the meantime, feel free to explore our product catalog or learn more about how we can help your practice.</p>
           <br>

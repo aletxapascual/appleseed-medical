@@ -124,7 +124,7 @@ export function Footer() {
               </div>
               <div>
                 <p className="text-xs text-blue-300/60 uppercase tracking-wider mb-1">Email</p>
-                <p className="text-white font-semibold">support@appleseed.com</p>
+                <p className="text-white font-semibold">support@appleseedmedical.com</p>
               </div>
             </a>
           </StaggerItem>
@@ -148,10 +148,10 @@ export function Footer() {
             © {new Date().getFullYear()} Appleseed Medical. All rights reserved.
           </p>
           <div className="flex items-center gap-8">
-            <Link href="#" className="text-sm text-blue-200/60 hover:text-white transition-colors">
+            <Link href="/privacy" className="text-sm text-blue-200/60 hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-sm text-blue-200/60 hover:text-white transition-colors">
+            <Link href="/terms" className="text-sm text-blue-200/60 hover:text-white transition-colors">
               Terms of Service
             </Link>
           </div>
